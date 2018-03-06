@@ -10,13 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305142158) do
+ActiveRecord::Schema.define(version: 20180306184545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "coins", force: :cascade do |t|
     t.string "symbol"
+    t.string "coin_market_cap_id"
+    t.string "name"
+    t.string "string"
+    t.integer "rank"
+    t.float "volume_usd"
+    t.float "market_cap_usd"
+    t.float "available_supply"
+    t.float "total_supply"
+    t.float "max_supply"
+    t.float "percent_change_1h"
+    t.float "percent_change_24h"
+    t.float "percent_change_7d"
+    t.bigint "last_updated"
+    t.float "score"
+    t.string "sentiment"
+    t.float "price_usd"
+    t.float "price_btc"
+  end
+
+  create_table "news_articles", force: :cascade do |t|
+    t.string "author"
+    t.string "description"
+    t.datetime "date"
+    t.float "score"
+    t.string "sentiment"
+    t.string "source"
+    t.string "title"
+    t.string "url"
+    t.integer "coin_id"
   end
 
   create_table "user_coins", force: :cascade do |t|
