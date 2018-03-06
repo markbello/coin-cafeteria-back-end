@@ -10,8 +10,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    render json:@user
+    @user = User.new(username: params[:username], password: params[:password])
+    if @user.valid?
+      @user.save
+      token = issue_token({ 'user_id': @user.id})
+      render json: {'token': token }
+    else
+      render json: {'error': 'Username already exists! Try again.'}
+    end
   end
 
   def update

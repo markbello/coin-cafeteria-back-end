@@ -21,6 +21,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'news-api'
 gem 'watson-api-client'
+gem 'jwt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
