@@ -1,3 +1,3 @@
 class UserCoinSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :coin_id
+  attributes :symbol
 end

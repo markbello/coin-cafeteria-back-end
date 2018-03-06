@@ -20,16 +20,24 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
+  def add_favorite
+    coin = params["coins"]
+    coin_object = Coin.find_or_create_by(symbol: coin)
     @user = User.find(params[:id])
-    @user.update(user_params)
-    render json:@user
+    if !@user.coins.include?(coin_object)
+      @user.coins << coin_object
+    end
+    render json: @user
   end
 
-  def destroy
+  def remove_favorite
+    coin = params["coins"]
+    coin_object = Coin.find_or_create_by(symbol: coin)
     @user = User.find(params[:id])
-    @user.destroy
-    render json: {message: "Removed From Favorite!"}
+    if @user.coins.include?(coin_object)
+      @user.coins.delete(coin_object)
+    end
+    render json: @user
   end
 
   private
